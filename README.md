@@ -2,7 +2,8 @@
 
 This is the first part of my Passion project application, where I have created -
 - database
-- CRUD operations using ViewModels and HTTP reuqests for Food items and Food categories
+- CRUD operations using ViewModels and HTTP reuqests for Food items and Food categories.
+- Food items and food categories links are given in header of application, just simply navigate to your localhost (example - for my system it's - https://localhost:44357/), and then start exploring Food items and Food categories of this project.
 
 # Running this project
 
