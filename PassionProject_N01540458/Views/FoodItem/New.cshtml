@@ -1,0 +1,26 @@
+﻿@model IEnumerable<PassionProject_N01540458.Models.FoodCategoryDto>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create food item</h2>
+
+<form action="/FoodItem/Create" method="POST">
+    <div>
+        <label>Name: </label><input type="text" name="FoodItemName" />
+    </div>
+    <div>
+        <label>Category:</label>
+        <select name="FoodCategoryId">
+            @foreach (var foodcategory in Model)
+            {
+                <option value="@foodcategory.CategoryId">@foodcategory.CategoryName</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Add Food item" />
+    </div>
+</form>

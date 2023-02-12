@@ -15,4 +15,10 @@ namespace PassionProject_N01540458.Models
         // field for food category name
         public string CategoryName { get; set; }
     }
+
+    public class FoodCategoryDto
+    {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+    }
 }

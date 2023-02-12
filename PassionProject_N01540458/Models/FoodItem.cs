@@ -34,7 +34,7 @@ namespace PassionProject_N01540458.Models
     {
         public int FoodItemId { get; set; }
         public string FoodItemName { get; set; }
-
+        public int FoodCategoryId { get; set; }
         public string FoodCategoryName { get; set; }
     }
 }

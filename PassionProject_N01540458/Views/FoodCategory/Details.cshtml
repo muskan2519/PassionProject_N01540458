@@ -1,0 +1,14 @@
+﻿@model PassionProject_N01540458.Models.FoodCategoryDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details for the selected food category</h2>
+<a href="/FoodCategory/List">Go back</a>
+<br />
+<a href="/FoodCategory/Edit/@Model.CategoryId">Update food category</a>
+<br />
+<a href="/FoodCategory/DeleteConfirm/@Model.CategoryId">Delete this food category</a>
+
+<h3>Category Name: @Model.CategoryName</h3>
+

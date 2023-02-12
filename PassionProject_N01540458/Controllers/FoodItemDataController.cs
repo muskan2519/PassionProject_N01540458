@@ -28,6 +28,7 @@ namespace PassionProject_N01540458.Controllers
             {
                 FoodItemId = f.FoodItemId,
                 FoodItemName = f.FoodItemName,
+                FoodCategoryId= f.FoodCategoryId,
                 FoodCategoryName = f.FoodCategory.CategoryName
             }));
 
@@ -44,6 +45,7 @@ namespace PassionProject_N01540458.Controllers
             {
                 FoodItemId = foodItem.FoodItemId,
                 FoodItemName = foodItem.FoodItemName,
+                FoodCategoryId= foodItem.FoodCategoryId,
                 FoodCategoryName = foodItem.FoodCategory.CategoryName
             };
             if (foodItem == null)

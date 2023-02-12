@@ -1,0 +1,12 @@
+﻿@model PassionProject_N01540458.Models.FoodCategoryDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete @Model.CategoryName?</h2>
+<a href="/FoodCategory/List">Cancel</a><br />
+
+<form action="/FoodCategory/Delete/@Model.CategoryId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>
+
