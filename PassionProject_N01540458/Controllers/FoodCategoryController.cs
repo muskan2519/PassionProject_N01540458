@@ -1,5 +1,6 @@
 ﻿using PassionProject_N01540458.Migrations;
 using PassionProject_N01540458.Models;
+using PassionProject_N01540458.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -37,6 +38,7 @@ namespace PassionProject_N01540458.Controllers
         // GET: FoodCategory/Details/5
         public ActionResult Details(int id)
         {
+            DetailsFoodCategory ViewModel = new DetailsFoodCategory();
             // communicate with foodcategory api to retrieve details of the food categories
             // curl https://localhost:44357/api/FoodCategoryData/FindFoodCategory/{id}
 
@@ -44,8 +46,18 @@ namespace PassionProject_N01540458.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             FoodCategoryDto foodcategory = response.Content.ReadAsAsync<FoodCategoryDto>().Result;
+            ViewModel.SelectedFoodCategories= foodcategory;
 
-            return View(foodcategory);
+            //showcase information about food items related to this food category
+            //send a request to gather information about food items related to a particular category ID
+            url = "FoodItemData/ListFoodItemsForFoodCategory/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<FoodItemDto> RelatedFoodItems = response.Content.ReadAsAsync<IEnumerable<FoodItemDto>>().Result;
+
+            ViewModel.RelatedFoodItems = RelatedFoodItems;
+
+
+            return View(ViewModel);
         }
 
         // GET: FoodCategory/New

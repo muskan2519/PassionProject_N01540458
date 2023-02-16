@@ -35,6 +35,35 @@ namespace PassionProject_N01540458.Controllers
             return FoodItemsDto;
         }
 
+        /// <summary>
+        /// Gathers information about all food items related to a particular category ID
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all food items in the database, including their associated categories matched with a particular category ID
+        /// </returns>
+        /// <param name="id">FOodCategory ID.</param>
+        /// <example>
+        /// GET: api/FoodItemData/ListFoodItemsForFoodCategory/3
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(FoodItemDto))]
+        public IHttpActionResult ListFoodItemsForFoodCategory(int id)
+        {
+            List<FoodItem> FoodItems = db.FoodItems.Where(a => a.FoodCategoryId == id).ToList();
+            List<FoodItemDto> FoodItemDtos = new List<FoodItemDto>();
+
+            FoodItems.ForEach(a => FoodItemDtos.Add(new FoodItemDto()
+            {
+                FoodItemId = a.FoodItemId,
+                FoodItemName = a.FoodItemName,
+                FoodCategoryId = a.FoodCategory.CategoryId,
+                FoodCategoryName = a.FoodCategory.CategoryName
+            }));
+
+            return Ok(FoodItemDtos);
+        }
+
         // GET: api/FoodItemData/FindFoodItem/5
         [ResponseType(typeof(FoodItem))]
         [HttpGet]

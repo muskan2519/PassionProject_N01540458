@@ -1,4 +1,4 @@
-﻿@model PassionProject_N01540458.Models.FoodCategoryDto
+﻿@model PassionProject_N01540458.Models.ViewModels.DetailsFoodCategory
 @{
     ViewBag.Title = "Details";
 }
@@ -6,9 +6,17 @@
 <h2>Details for the selected food category</h2>
 <a href="/FoodCategory/List">Go back</a>
 <br />
-<a href="/FoodCategory/Edit/@Model.CategoryId">Update food category</a>
+<a href="/FoodCategory/Edit/@Model.SelectedFoodCategories.CategoryId">Update food category</a>
 <br />
-<a href="/FoodCategory/DeleteConfirm/@Model.CategoryId">Delete this food category</a>
+<a href="/FoodCategory/DeleteConfirm/@Model.SelectedFoodCategories.CategoryId">Delete this food category</a>
 
-<h3>Category Name: @Model.CategoryName</h3>
+<h3>Category Name: @Model.SelectedFoodCategories.CategoryName</h3>
 
+<div style="margin-top:100px;">
+    <h3>Food items related to this food category</h3>
+    @foreach (var fooditem in Model.RelatedFoodItems)
+    {
+        <a href="/FoodItem/Details/@fooditem.FoodItemId">@fooditem.FoodItemName</a><br />
+
+    }
+</div>
