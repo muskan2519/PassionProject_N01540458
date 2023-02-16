@@ -2,9 +2,12 @@
 
 This is the first part of my Passion project application, where I have created -
 - database
-- CRUD operations using Web API controller for food item
+- CRUD operations using ViewModels and HTTP reuqests for Food items and Food categories.
+- Food items and food categories links are given in header of application, just simply navigate to your localhost (example - for my system it's - https://localhost:44357/), and then start exploring Food items and Food categories of this project.
 
 # Running this project
+
+NOTE: Following points are valid for all entities of this project. Below is one of the entities - food item.
 
 - Make sure to utilize jsondata/fooditem.json to formulate data you wish to send as part of the POST requests. {id} should be replaced with the fooditem's primary key ID. The port number may not always be the same.
 
