@@ -8,6 +8,7 @@ This is the first part of my Passion project application, where I have created -
 - The code structure followed for food items and food categories, wll be similarly applied to build relationships between-
 1. Food items and recipes
 2. Food items and refrigerators, both of them are many-many relationships.
+
 Note: I have made model structure for recipes but the rest is yet to be finished.
 
 # Running this project
