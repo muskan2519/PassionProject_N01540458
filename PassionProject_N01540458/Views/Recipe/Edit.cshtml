@@ -1,0 +1,22 @@
+﻿@model PassionProject_N01540458.Models.RecipeDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update the recipe</h2>
+
+<form action="/Recipe/Update/@Model.RecipeId" method="POST">
+    <div style="display:none">
+        <input type="text" name="RecipeId" value="@Model.RecipeId" />
+    </div>
+    <div>
+        <label>Name: </label><input type="text" name="RecipeName" value="@Model.RecipeName" />
+    </div>
+    <div>
+        <label>Description: </label><textarea name="RecipeDescription">@Model.RecipeDescription</textarea>
+    </div>
+    <div>
+        <input type="submit" value="Update Recipe" />
+    </div>
+</form>
+

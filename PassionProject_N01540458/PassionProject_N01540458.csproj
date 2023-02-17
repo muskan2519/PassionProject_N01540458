@@ -188,6 +188,8 @@
     <Compile Include="Controllers\FoodItemDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RecipeController.cs" />
+    <Compile Include="Controllers\RecipeDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -294,6 +296,12 @@
     <Content Include="Views\FoodCategory\New.cshtml" />
     <Content Include="Views\FoodCategory\DeleteConfirm.cshtml" />
     <Content Include="Views\FoodCategory\Edit.cshtml" />
+    <Content Include="Views\Recipe\New.cshtml" />
+    <Content Include="Views\Recipe\List.cshtml" />
+    <Content Include="Views\Recipe\Error.cshtml" />
+    <Content Include="Views\Recipe\Edit.cshtml" />
+    <Content Include="Views\Recipe\Details.cshtml" />
+    <Content Include="Views\Recipe\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,14 +2,14 @@
 
 This is the first part of my Passion project application, where I have created -
 - database
-- CRUD operations using ViewModels and HTTP reuqests for Food items and Food categories.
-- Food items and food categories links are given in header of application, just simply navigate to your localhost (example - for my system it's - https://localhost:44357/), and then start exploring Food items and Food categories of this project.
+- CRUD operations using ViewModels and HTTP reuqests for Food items, food categories and recipes.
+- Food items, food categories and recipes links are given in header of application, just simply navigate to your localhost (example - for my system it's - https://localhost:44357/), and then start exploring Food items, categories and recipes of this project.
 
 - The code structure followed for food items and food categories, wll be similarly applied to build relationships between-
 1. Food items and recipes
 2. Food items and refrigerators, both of them are many-many relationships.
 
-Note: I have made model structure for recipes but the rest is yet to be finished.
+Note: I have made a one-to-many relationship between food category and food items. Also, I have made CRUD for recipes, but functionality to show many-to-many relationship between recipes and food items is left, but I have added comments where my code would go. Similar code will be applied to show relation between food items and refrigerators.
 
 # Running this project
 

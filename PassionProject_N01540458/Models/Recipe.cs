@@ -16,4 +16,11 @@ namespace PassionProject_N01540458.Models
         // A recipe can take multiple food items
         public ICollection<FoodItem> FoodItems { get;set; }
     }
+
+    public class RecipeDto
+    {
+        public int RecipeId { get; set; }
+        public string RecipeName { get; set;}
+        public string RecipeDescription { get; set;}
+    }
 }

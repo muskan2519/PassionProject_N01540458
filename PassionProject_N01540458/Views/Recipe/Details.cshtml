@@ -1,0 +1,14 @@
+﻿@model PassionProject_N01540458.Models.RecipeDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details for the selected recipe</h2>
+<a href="/Recipe/List">Go back</a>
+<br />
+<a href="/Recipe/Edit/@Model.RecipeId">Update recipe</a>
+<br />
+<a href="/Recipe/DeleteConfirm/@Model.RecipeId">Delete this recipe</a>
+
+<h3>Recipe Name: @Model.RecipeName</h3>
+<h3>Recipe Description: @Model.RecipeDescription</h3>
