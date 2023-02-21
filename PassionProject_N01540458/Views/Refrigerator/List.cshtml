@@ -1,0 +1,15 @@
+﻿@model IEnumerable<PassionProject_N01540458.Models.RefrigeratorDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Refrigerators</h2>
+<a href="/Refrigerator/New">Add new Refrigerator</a>
+
+@foreach (var refrigerator in Model)
+{
+    <h4>Refrigerator Name: <a href="/Refrigerator/Details/@refrigerator.RefrigeratorId">@refrigerator.RefrigeratorName</a></h4>
+}
+
+
+

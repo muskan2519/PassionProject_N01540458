@@ -1,0 +1,40 @@
+﻿@model PassionProject_N01540458.Models.ViewModels.DetailsRefrigerator
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details for the selected Refrigerator</h2>
+<a href="/Refrigerator/List">Go back</a>
+<br />
+<a href="/Refrigerator/Edit/@Model.SelectedRefrigerator.RefrigeratorId">Update Refrigerator</a>
+<br />
+<a href="/Refrigerator/DeleteConfirm/@Model.SelectedRefrigerator.RefrigeratorId">Delete this Refrigerator</a>
+
+<h3>Refrigerator Name: @Model.SelectedRefrigerator.RefrigeratorName</h3>
+<h5>Username: @Model.SelectedRefrigerator.UserName</h5>
+
+<div>
+    <h3>List of food items included in this Refrigerator - </h3>
+    @foreach (var item in Model.ContainedFoodItems)
+    {
+        <a href="/FoodItem/Details/@item.FoodItemId">@item.FoodItemName</a>
+        <a style="color:#ab2020;" href="/Refrigerator/UnAssociate/@Model.SelectedRefrigerator.RefrigeratorId?FoodItemId=@item.FoodItemId">[x]</a><br />
+    }
+
+    <div>
+        <h4>Add new Food item to @Model.SelectedRefrigerator.RefrigeratorName</h4>
+        <form method="POST" action="/Refrigerator/Associate/@Model.SelectedRefrigerator.RefrigeratorId">
+            <select name="FoodItemId">
+                @foreach (var item in Model.AvailableFoodItems)
+                {
+                    <option value="@item.FoodItemId">@item.FoodItemName</option>
+                }
+
+            </select>
+            <input type="submit" value="Associate Food item" />
+        </form>
+    </div>
+
+</div>
+
+

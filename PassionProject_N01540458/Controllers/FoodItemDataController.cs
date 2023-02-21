@@ -64,6 +64,122 @@ namespace PassionProject_N01540458.Controllers
             return Ok(FoodItemDtos);
         }
 
+        /// <summary>
+        /// Gathers information about all food items related to a particular recipe ID
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all recipes in the database matched with a particular food item ID
+        /// </returns>
+        /// <param name="id">Recipe id</param>
+        /// <example>
+        /// GET: api/FoodItemData/ListRecipesForItem/3
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(FoodItemDto))]
+        public IHttpActionResult ListRecipesForItem(int id)
+        {
+            List<FoodItem> FoodItems = db.FoodItems.Where(a => a.Recipes.Any(k=> k.RecipeId == id)).ToList();
+            List<FoodItemDto> FoodItemDtos = new List<FoodItemDto>();
+
+            FoodItems.ForEach(a => FoodItemDtos.Add(new FoodItemDto()
+            {
+                FoodItemId = a.FoodItemId,
+                FoodItemName = a.FoodItemName,
+                FoodCategoryId = a.FoodCategory.CategoryId,
+                FoodCategoryName = a.FoodCategory.CategoryName
+            }));
+
+            return Ok(FoodItemDtos);
+        }
+
+        /// <summary>
+        /// Gathers information about all food items not related to a particular recipe ID
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all recipes in the database not matched with a particular food item ID
+        /// </returns>
+        /// <param name="id">Recipe id</param>
+        /// <example>
+        /// GET: api/FoodItemData/ListFoodItemsNotForRecipe/3
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(FoodItemDto))]
+        public IHttpActionResult ListFoodItemsNotForRecipe(int id)
+        {
+            List<FoodItem> FoodItems = db.FoodItems.Where(a => !a.Recipes.Any(k => k.RecipeId == id)).ToList();
+            List<FoodItemDto> FoodItemDtos = new List<FoodItemDto>();
+
+            FoodItems.ForEach(a => FoodItemDtos.Add(new FoodItemDto()
+            {
+                FoodItemId = a.FoodItemId,
+                FoodItemName = a.FoodItemName,
+                FoodCategoryId = a.FoodCategory.CategoryId,
+                FoodCategoryName = a.FoodCategory.CategoryName
+            }));
+
+            return Ok(FoodItemDtos);
+        }
+
+        /// <summary>
+        /// Gathers information about all food items related to a particular refrigerator ID
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all refrigerators in the database matched with a particular food item ID
+        /// </returns>
+        /// <param name="id">Refrigerator id</param>
+        /// <example>
+        /// GET: api/FoodItemData/ListRefrigeratorsForItem/3
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(FoodItemDto))]
+        public IHttpActionResult ListRefrigeratorsForItem(int id)
+        {
+            List<FoodItem> FoodItems = db.FoodItems.Where(a => a.Refrigerators.Any(k => k.RefrigeratorId == id)).ToList();
+            List<FoodItemDto> FoodItemDtos = new List<FoodItemDto>();
+
+            FoodItems.ForEach(a => FoodItemDtos.Add(new FoodItemDto()
+            {
+                FoodItemId = a.FoodItemId,
+                FoodItemName = a.FoodItemName,
+                FoodCategoryId = a.FoodCategory.CategoryId,
+                FoodCategoryName = a.FoodCategory.CategoryName
+            }));
+
+            return Ok(FoodItemDtos);
+        }
+
+        /// <summary>
+        /// Gathers information about all food items not related to a particular refrigerator ID
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all refrigerators in the database not matched with a particular food item ID
+        /// </returns>
+        /// <param name="id">Refrigerator id</param>
+        /// <example>
+        /// GET: api/FoodItemData/ListFoodItemsNotForRefrigerator/3
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(FoodItemDto))]
+        public IHttpActionResult ListFoodItemsNotForRefrigerator(int id)
+        {
+            List<FoodItem> FoodItems = db.FoodItems.Where(a => !a.Refrigerators.Any(k => k.RefrigeratorId == id)).ToList();
+            List<FoodItemDto> FoodItemDtos = new List<FoodItemDto>();
+
+            FoodItems.ForEach(a => FoodItemDtos.Add(new FoodItemDto()
+            {
+                FoodItemId = a.FoodItemId,
+                FoodItemName = a.FoodItemName,
+                FoodCategoryId = a.FoodCategory.CategoryId,
+                FoodCategoryName = a.FoodCategory.CategoryName
+            }));
+
+            return Ok(FoodItemDtos);
+        }
+
         // GET: api/FoodItemData/FindFoodItem/5
         [ResponseType(typeof(FoodItem))]
         [HttpGet]

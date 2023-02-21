@@ -1,0 +1,13 @@
+﻿@model PassionProject_N01540458.Models.RefrigeratorDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete @Model.RefrigeratorName ?</h2>
+<a href="/Refrigerator/List">Cancel</a>
+<br />
+
+<form action="/Refrigerator/Delete/@Model.RefrigeratorId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>
+

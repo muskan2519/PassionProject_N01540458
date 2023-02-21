@@ -1,0 +1,22 @@
+﻿@model PassionProject_N01540458.Models.RefrigeratorDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update the Refrigerator</h2>
+
+<form action="/Refrigerator/Update/@Model.RefrigeratorId" method="POST">
+    <div style="display:none">
+        <input type="text" name="RefrigeratorId" value="@Model.RefrigeratorId" />
+    </div>
+    <div>
+        <label>Refrigerator Name: </label><input type="text" name="RefrigeratorName" value="@Model.RefrigeratorName" />
+    </div>
+    <div>
+        <label>Username: </label><input type="text" name="UserName" value="@Model.UserName" />
+    </div>
+    <div>
+        <input type="submit" value="Update Refrigerator" />
+    </div>
+</form>
+

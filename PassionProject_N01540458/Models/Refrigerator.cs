@@ -16,4 +16,10 @@ namespace PassionProject_N01540458.Models
         // A refrigerator can take multiple food items
         public ICollection<FoodItem> FoodItems { get; set; }
     }
+    public class RefrigeratorDto
+    {
+        public int RefrigeratorId { get; set; }
+        public string UserName { get; set; }
+        public string RefrigeratorName { get; set; }
+    }
 }

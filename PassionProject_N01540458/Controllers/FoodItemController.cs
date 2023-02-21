@@ -38,6 +38,7 @@ namespace PassionProject_N01540458.Controllers
         // GET: FoodItem/Details/5
         public ActionResult Details(int id)
         {
+            DetailsFoodItem ViewModel = new DetailsFoodItem();
             // communicate with fooditem api to retrieve details of the food item
             // curl https://localhost:44357/api/FoodItemData/FindFoodItem/{id}
 
@@ -45,8 +46,17 @@ namespace PassionProject_N01540458.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             FoodItemDto fooditem = response.Content.ReadAsAsync<FoodItemDto>().Result;
-            
-            return View(fooditem);
+
+            ViewModel.SelectedFoodItem = fooditem;
+
+            //show all recipes related to this food item
+            url = "recipedata/ListFoodItemsForRecipe/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<RecipeDto> ContainedRecipes = response.Content.ReadAsAsync<IEnumerable<RecipeDto>>().Result;
+
+            ViewModel.ContainedRecipes = ContainedRecipes;
+
+            return View(ViewModel);
         }
 
         // GET: FoodItem/New

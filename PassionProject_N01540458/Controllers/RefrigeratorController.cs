@@ -2,7 +2,6 @@
 using PassionProject_N01540458.Models.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -11,50 +10,50 @@ using System.Web.Script.Serialization;
 
 namespace PassionProject_N01540458.Controllers
 {
-    public class RecipeController : Controller
+    public class RefrigeratorController : Controller
     {
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
-        static RecipeController()
+        static RefrigeratorController()
         {
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44357/api/");
         }
-        // GET: Recipe
+        // GET: Refrigerator
         public ActionResult List()
         {
-            // communicate with recipe api to retrieve a list of recipes
-            // curl https://localhost:44357/api/RecipeData/ListRecipes
+            // communicate with refrigerator api to retrieve a list of refrigerators
+            // curl https://localhost:44357/api/RefrigeratorData/ListRefrigerators
 
-            string url = "RecipeData/ListRecipes";
+            string url = "RefrigeratorData/ListRefrigerators";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            IEnumerable<RecipeDto> recipes = response.Content.ReadAsAsync<IEnumerable<RecipeDto>>().Result;
+            IEnumerable<RefrigeratorDto> refrigerators = response.Content.ReadAsAsync<IEnumerable<RefrigeratorDto>>().Result;
 
-            return View(recipes);
+            return View(refrigerators);
         }
 
-        // GET: Recipe/Details/5
+        // GET: Refrigerator/Details/5
         public ActionResult Details(int id)
         {
-            DetailsRecipe ViewModel = new DetailsRecipe();
-            // communicate with recipe api to retrieve details of the recipes
-            // curl https://localhost:44357/api/RecipeData/FindRecipe/{id}
+            DetailsRefrigerator ViewModel = new DetailsRefrigerator();
+            // communicate with refrigerator api to retrieve details of the refrigerators
+            // curl https://localhost:44357/api/RefrigeratorData/FindRefrigerator/{id}
 
-            string url = "RecipeData/FindRecipe/" + id;
+            string url = "RefrigeratorData/FindRefrigerator/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            RecipeDto recipe = response.Content.ReadAsAsync<RecipeDto>().Result;
-            ViewModel.SelectedRecipe = recipe;
+            RefrigeratorDto refrigerator = response.Content.ReadAsAsync<RefrigeratorDto>().Result;
+            ViewModel.SelectedRefrigerator = refrigerator;
 
-            //show all food items related to this recipe
-            url = "fooditemdata/ListRecipesForItem/" + id;
+            //show all food items related to this refrigerator
+            url = "fooditemdata/ListRefrigeratorsForItem/" + id;
             response = client.GetAsync(url).Result;
             IEnumerable<FoodItemDto> ContainedFoodItems = response.Content.ReadAsAsync<IEnumerable<FoodItemDto>>().Result;
             ViewModel.ContainedFoodItems = ContainedFoodItems;
 
-            //show all food items not related to this recipe
-            url = "fooditemdata/ListFoodItemsNotForRecipe/" + id;
+            //show all food items not related to this refrigerator
+            url = "fooditemdata/ListFoodItemsNotForRefrigerator/" + id;
             response = client.GetAsync(url).Result;
             IEnumerable<FoodItemDto> AvailableFoodItems = response.Content.ReadAsAsync<IEnumerable<FoodItemDto>>().Result;
             ViewModel.AvailableFoodItems = AvailableFoodItems;
@@ -62,12 +61,12 @@ namespace PassionProject_N01540458.Controllers
             return View(ViewModel);
         }
 
-        //POST: Recipe/Associate/{recipeid}
+        //POST: Refrigerator/Associate/{refrigeratorid}
         [HttpPost]
         public ActionResult Associate(int id, int FoodItemId)
         {
-            //call our api to associate recipe with food item
-            string url = "RecipeData/AssociateRecipeWithFoodItem/" + id + "/" + FoodItemId;
+            //call our api to associate refrigerator with food item
+            string url = "RefrigeratorData/AssociateRefrigeratorWithFoodItem/" + id + "/" + FoodItemId;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
@@ -76,13 +75,13 @@ namespace PassionProject_N01540458.Controllers
         }
 
 
-        //GET: Recipe/UnAssociate/{id}?FoodItemId={FoodItemId}
+        //GET: Refrigerator/UnAssociate/{refrigeratorid}
         [HttpGet]
         public ActionResult UnAssociate(int id, int FoodItemId)
         {
 
-            //call our api to remove association recipe with food item
-            string url = "RecipeData/UnAssociateRecipeWithFoodItem/" + id + "/" + FoodItemId;
+            //call our api to unassociate refrigerator with food item
+            string url = "RefrigeratorData/UnAssociateRefrigeratorWithFoodItem/" + id + "/" + FoodItemId;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;
@@ -90,23 +89,23 @@ namespace PassionProject_N01540458.Controllers
             return RedirectToAction("Details/" + id);
         }
 
-        // GET: Recipe/New
+        // GET: Refrigerator/New
         public ActionResult New()
         {
             return View();
         }
 
-        // POST: Recipe/Create
+        // POST: Refrigerator/Create
         [HttpPost]
-        public ActionResult Create(Recipe recipe)
+        public ActionResult Create(Refrigerator refrigerator)
         {
-            // communicate with recipe api to add details of the new recipe
-            // curl -H "Content-Type:application/json" -d @foodcategory.json https://localhost:44357/api/RecipeData/AddRecipe
-            string url = "RecipeData/AddRecipe";
+            // communicate with refrigerator api to add details of the new refrigerator
+            // curl -H "Content-Type:application/json" -d @refrigerator.json https://localhost:44357/api/RefrigeratorData/AddRefrigerator
+            string url = "RefrigeratorData/AddRefrigerator";
 
             // converting payload to json to send to api
 
-            string jsonpayload = jss.Serialize(recipe);
+            string jsonpayload = jss.Serialize(refrigerator);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -122,24 +121,24 @@ namespace PassionProject_N01540458.Controllers
             }
         }
 
-        // GET: Recipe/Edit/5
+        // GET: Refrigerator/Edit/5
         public ActionResult Edit(int id)
         {
-            string url = "RecipeData/FindRecipe/" + id;
+            string url = "RefrigeratorData/FindRefrigerator/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            RecipeDto recipe = response.Content.ReadAsAsync<RecipeDto>().Result;
-            return View(recipe);
+            RefrigeratorDto refrigerator = response.Content.ReadAsAsync<RefrigeratorDto>().Result;
+            return View(refrigerator);
         }
 
-        // POST: Recipe/Update/5
+        // POST: Refrigerator/Update/5
         [HttpPost]
-        public ActionResult Update(int id, Recipe recipe)
+        public ActionResult Update(int id, Refrigerator refrigerator)
         {
-            string url = "RecipeData/UpdateRecipe/" + id;
+            string url = "RefrigeratorData/UpdateRefrigerator/" + id;
 
             // converting payload to json to send to api
 
-            string jsonpayload = jss.Serialize(recipe);
+            string jsonpayload = jss.Serialize(refrigerator);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -155,20 +154,20 @@ namespace PassionProject_N01540458.Controllers
             }
         }
 
-        // GET: Recipe/DeleteConfirm/5
+        // GET: Refrigerator/DeleteConfirm/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "RecipeData/FindRecipe/" + id;
+            string url = "RefrigeratorData/FindRefrigerator/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            RecipeDto recipe = response.Content.ReadAsAsync<RecipeDto>().Result;
-            return View(recipe);
+            RefrigeratorDto refrigerator = response.Content.ReadAsAsync<RefrigeratorDto>().Result;
+            return View(refrigerator);
         }
 
-        // POST: Recipe/Delete/5
+        // POST: Refrigerator/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            string url = "RecipeData/DeleteRecipe/" + id;
+            string url = "RefrigeratorData/DeleteRefrigerator/" + id;
 
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
@@ -183,6 +182,7 @@ namespace PassionProject_N01540458.Controllers
                 return RedirectToAction("Error");
             }
         }
+
         public ActionResult Error()
         {
             return View();
