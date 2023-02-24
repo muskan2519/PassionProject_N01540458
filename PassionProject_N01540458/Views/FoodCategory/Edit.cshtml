@@ -3,17 +3,18 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Update the food category</h2>
-
-<form action="/FoodCategory/Update/@Model.CategoryId" method="POST">
-    <div style="display:none">
-        <input type="text" name="CategoryId" value="@Model.CategoryId" />
-    </div>
-    <div>
-        <label>Name: </label><input type="text" name="CategoryName" value="@Model.CategoryName" />
-    </div>
-    <div>
-        <input type="submit" value="Update Food category" />
-    </div>
-</form>
+<div class="detailsContainer">
+    <h2>Update the food category</h2>
+    <form class="formAction" action="/FoodCategory/Update/@Model.CategoryId" method="POST">
+        <div style="display:none">
+            <input type="text" name="CategoryId" value="@Model.CategoryId" />
+        </div>
+        <div>
+            <label>Name: </label><input type="text" name="CategoryName" value="@Model.CategoryName" />
+        </div>
+        <div>
+            <input type="submit" class="btn btn-success" style="margin-top: 20px;" value="Update Food category" />
+        </div>
+    </form>
+</div>
 

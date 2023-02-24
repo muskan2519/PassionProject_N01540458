@@ -3,13 +3,16 @@
     ViewBag.Title = "List";
 }
 
-<h2>List of Refrigerators</h2>
-<a href="/Refrigerator/New">Add new Refrigerator</a>
+<div class="listContainer">
+    <h2>List of Refrigerators</h2>
+    <a href="/Refrigerator/New" class="btn btn-primary btn-lg">Add refrigerator</a>
 
-@foreach (var refrigerator in Model)
-{
-    <h4>Refrigerator Name: <a href="/Refrigerator/Details/@refrigerator.RefrigeratorId">@refrigerator.RefrigeratorName</a></h4>
-}
-
-
+    @foreach (var refrigerator in Model)
+    {
+        <div class="listItem">
+            <h4>@refrigerator.RefrigeratorName</h4>
+            <a href="/Refrigerator/Details/@refrigerator.RefrigeratorId" class="btn btn-info">More Info &raquo;</a>
+        </div>
+    }
+</div>
 

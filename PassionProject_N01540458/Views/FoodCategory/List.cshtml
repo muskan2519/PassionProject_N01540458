@@ -2,12 +2,17 @@
 @{
     ViewBag.Title = "List";
 }
+<div class="listContainer">
+    <h2>List of food categories</h2>
+    <a href="/FoodCategory/New" class="btn btn-primary btn-lg">Add category</a>
 
-<h2>List of food categories</h2>
-<a href="/FoodCategory/New">Add new food category</a>
+    @foreach (var foodcategory in Model)
+    {
+        <div class="listItem">
+            <h4>@foodcategory.CategoryName</h4>
+            <a href="/FoodCategory/Details/@foodcategory.CategoryId" class="btn btn-info">More Info &raquo;</a>
+        </div>
+    }
+</div>
 
-@foreach (var foodcategory in Model)
-{
-    <h4>Category Name: <a href="/FoodCategory/Details/@foodcategory.CategoryId">@foodcategory.CategoryName</a></h4>
-}
 

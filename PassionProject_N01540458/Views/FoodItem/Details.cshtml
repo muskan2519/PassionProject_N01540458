@@ -3,24 +3,23 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details for the selected food item</h2>
-<a href="/FoodItem/List">Go back</a>
-<br />
-<a href="/FoodItem/Edit/@Model.SelectedFoodItem.FoodItemId">Update food item</a>
-<br />
-<a href="/FoodItem/DeleteConfirm/@Model.SelectedFoodItem.FoodItemId">Delete this food item</a>
-
-<h3>Name: @Model.SelectedFoodItem.FoodItemName</h3>
-<h4>Category Name: @Model.SelectedFoodItem.FoodCategoryName</h4>
-
-
-<div>
-    <h3>This food item is associated to - </h3>
-    @foreach (var recipe in Model.ContainedRecipes)
-    {
-        <a href="/Recipe/Details/@recipe.RecipeId">@recipe.RecipeName</a><br />
-
-    }
+<div class="detailsContainer">
+    <h2>@Model.SelectedFoodItem.FoodItemName (Category - @Model.SelectedFoodItem.FoodCategoryName)</h2>
+    <div class="buttonsBox">
+        <a href="/FoodItem/List" class="btn btn-success">&raquo; Go back</a>
+        <a href="/FoodItem/Edit/@Model.SelectedFoodItem.FoodItemId" class="btn btn-warning">Update</a>
+        <a href="/FoodItem/DeleteConfirm/@Model.SelectedFoodItem.FoodItemId" class="btn btn-danger">Delete</a>
+    </div>
+    <div class="listContainer">
+        <h2 style="font-size: 15px;">Recipes to which @Model.SelectedFoodItem.FoodItemName is associated to:</h2>
+        @foreach (var recipe in Model.ContainedRecipes)
+        {
+            <div class="listItem">
+                <h4>@recipe.RecipeName</h4>
+                <a href="/Recipe/Details/@recipe.RecipeId" class="btn btn-info">More Info &raquo;</a>
+            </div>
+        }
+    </div>
 </div>
 
 

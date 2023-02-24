@@ -3,13 +3,15 @@
     ViewBag.Title = "List";
 }
 
-<h2>List of Recipes</h2>
-<a href="/Recipe/New">Add new Recipe</a>
+<div class="listContainer">
+    <h2>List of Recipes</h2>
+    <a href="/Recipe/New" class="btn btn-primary btn-lg">Add recipe</a>
 
-@foreach (var recipe in Model)
-{
-    <h4>Recipe Name: <a href="/Recipe/Details/@recipe.RecipeId">@recipe.RecipeName</a></h4>
-}
-
-
-
+    @foreach (var recipe in Model)
+    {
+        <div class="listItem">
+            <h4>@recipe.RecipeName</h4>
+            <a href="/Recipe/Details/@recipe.RecipeId" class="btn btn-info">More Info &raquo;</a>
+        </div>
+    }
+</div>

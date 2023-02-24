@@ -3,13 +3,15 @@
     ViewBag.Title = "List";
 }
 
-<h2>List of food items</h2>
-<a href="/FoodItem/New">Add new food item</a>
+<div class="listContainer">
+    <h2>List of food items</h2>
+    <a href="/FoodItem/New" class="btn btn-primary btn-lg">Add food item</a>
 
-@foreach(var fooditem in Model)
-            {
-                <h4>Item Name: <a href="/FoodItem/Details/@fooditem.FoodItemId">@fooditem.FoodItemName</a></h4>
-                <h5>Category:  @fooditem.FoodCategoryName</h5>
-            }
-
-
+    @foreach (var fooditem in Model)
+    {
+        <div class="listItem">
+            <h4>@fooditem.FoodItemName</h4>
+            <a href="/FoodItem/Details/@fooditem.FoodItemId" class="btn btn-info">More Info &raquo;</a>
+        </div>
+    }
+</div>

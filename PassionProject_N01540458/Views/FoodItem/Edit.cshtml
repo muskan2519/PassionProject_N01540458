@@ -3,27 +3,28 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Update the food item</h2>
+<div class="detailsContainer">
+    <h2>Create food item</h2>
+    <form class="formAction" action="/FoodItem/Update/@Model.SelectedFoodItem.FoodItemId" method="POST">
+        <div style="display:none">
+            <input type="text" name="FoodItemId" value="@Model.SelectedFoodItem.FoodItemId" />
+        </div>
+        <div>
+            <label>Name: </label><input type="text" name="FoodItemName" value="@Model.SelectedFoodItem.FoodItemName" />
+        </div>
+        <div>
+            <label>Category:</label>
+            <select name="FoodCategoryId">
+                @foreach (var foodcategory in Model.FoodCategoriesOptions)
+                {
+                    <option value="@foodcategory.CategoryId">@foodcategory.CategoryName</option>
 
-<form action="/FoodItem/Update/@Model.SelectedFoodItem.FoodItemId" method="POST">
-    <div style="display:none">
-        <input type="text" name="FoodItemId" value="@Model.SelectedFoodItem.FoodItemId" />
-    </div>
-    <div>
-        <label>Name: </label><input type="text" name="FoodItemName" value="@Model.SelectedFoodItem.FoodItemName" />
-    </div>
-    <div>
-        <label>Category:</label>
-        <select name="FoodCategoryId">
-            @foreach (var foodcategory in Model.FoodCategoriesOptions)
-            {
-                <option value="@foodcategory.CategoryId">@foodcategory.CategoryName</option>
-
-            }
-        </select>
-    </div>
-    <div>
-        <input type="submit" value="Update Food item" />
-    </div>
-</form>
+                }
+            </select>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-success" style="margin-top: 20px;" value="Update Food item" />
+        </div>
+    </form>
+</div>
 

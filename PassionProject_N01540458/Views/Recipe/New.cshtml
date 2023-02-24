@@ -2,17 +2,18 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create a new Recipe</h2>
-
-<form action="/Recipe/Create" method="POST">
-    <div>
-        <label>Name: </label><input type="text" name="RecipeName" />
-    </div>
-    <div>
-        <label>Description: </label><textarea name="RecipeDescription"></textarea>
-    </div>
-    <div>
-        <input type="submit" value="Add Food category" />
-    </div>
-</form>
+<div class="detailsContainer">
+    <h2>Create new recipe</h2>
+    <form class="formAction" action="/Recipe/Create" method="POST">
+        <div>
+            <label>Name: </label><input type="text" name="RecipeName" />
+        </div>
+        <div>
+            <label>Description: </label><textarea name="RecipeDescription"></textarea>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-success" style="margin-top: 20px;" value="Add Food recipe" />
+        </div>
+    </form>
+</div>
 

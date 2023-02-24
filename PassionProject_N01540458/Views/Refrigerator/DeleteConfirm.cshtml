@@ -3,11 +3,12 @@
     ViewBag.Title = "DeleteConfirm";
 }
 
-<h2>Are you sure you want to delete @Model.RefrigeratorName ?</h2>
-<a href="/Refrigerator/List">Cancel</a>
-<br />
-
-<form action="/Refrigerator/Delete/@Model.RefrigeratorId" method="POST">
-    <input type="submit" value="Confirm Delete" />
-</form>
-
+<div class="detailsContainer">
+    <h2>Are you sure you want to delete @Model.RefrigeratorName ?</h2>
+    <div class="buttonsBox">
+        <a href="/Refrigerator/List" class="btn btn-success">&raquo; Cancel</a>
+        <form action="/Refrigerator/Delete/@Model.RefrigeratorId" method="POST">
+            <input type="submit" class="btn btn-danger" value="Confirm Delete" />
+        </form>
+    </div>
+</div>

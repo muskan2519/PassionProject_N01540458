@@ -3,20 +3,21 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details for the selected food category</h2>
-<a href="/FoodCategory/List">Go back</a>
-<br />
-<a href="/FoodCategory/Edit/@Model.SelectedFoodCategories.CategoryId">Update food category</a>
-<br />
-<a href="/FoodCategory/DeleteConfirm/@Model.SelectedFoodCategories.CategoryId">Delete this food category</a>
-
-<h3>Category Name: @Model.SelectedFoodCategories.CategoryName</h3>
-
-<div style="margin-top:100px;">
-    <h3>Food items related to this food category</h3>
-    @foreach (var fooditem in Model.RelatedFoodItems)
-    {
-        <a href="/FoodItem/Details/@fooditem.FoodItemId">@fooditem.FoodItemName</a><br />
-
-    }
+<div class="detailsContainer">
+    <h2>@Model.SelectedFoodCategories.CategoryName</h2>
+    <div class="buttonsBox">
+        <a href="/FoodCategory/List" class="btn btn-success">&raquo; Go back</a>
+        <a href="/FoodCategory/Edit/@Model.SelectedFoodCategories.CategoryId" class="btn btn-warning">Update</a>
+        <a href="/FoodCategory/DeleteConfirm/@Model.SelectedFoodCategories.CategoryId" class="btn btn-danger">Delete</a>
+    </div>
+    <div class="listContainer">
+        <h2 style="font-size: 15px;">Associated food items:</h2>
+        @foreach (var fooditem in Model.RelatedFoodItems)
+        {
+            <div class="listItem">
+                <h4>@fooditem.FoodItemName</h4>
+                <a href="/FoodItem/Details/@fooditem.FoodItemId" class="btn btn-info">More Info &raquo;</a>
+            </div>
+        }
+    </div>
 </div>

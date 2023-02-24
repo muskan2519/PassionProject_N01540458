@@ -3,11 +3,13 @@
     ViewBag.Title = "DeleteConfirm";
 }
 
-<h2>Are you sure you want to delete @Model.RecipeName ?</h2>
-<a href="/Recipe/List">Cancel</a>
-<br />
-
-<form action="/Recipe/Delete/@Model.RecipeId" method="POST">
-    <input type="submit" value="Confirm Delete" />
-</form>
+<div class="detailsContainer">
+    <h2>Are you sure you want to delete @Model.RecipeName ?</h2>
+    <div class="buttonsBox">
+        <a href="/Recipe/List" class="btn btn-success">&raquo; Cancel</a>
+        <form action="/Recipe/Delete/@Model.RecipeId" method="POST">
+            <input type="submit" class="btn btn-danger" value="Confirm Delete" />
+        </form>
+    </div>
+</div>
 

@@ -3,36 +3,36 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details for the selected recipe</h2>
-<a href="/Recipe/List">Go back</a>
-<br />
-<a href="/Recipe/Edit/@Model.SelectedRecipe.RecipeId">Update recipe</a>
-<br />
-<a href="/Recipe/DeleteConfirm/@Model.SelectedRecipe.RecipeId">Delete this recipe</a>
-
-<h3>Recipe Name: @Model.SelectedRecipe.RecipeName</h3>
-<h5>Recipe Description: @Model.SelectedRecipe.RecipeDescription</h5>
-
-<div>
-    <h3>List of food items included in this recipe - </h3>
-    @foreach (var item in Model.ContainedFoodItems)
-    {
-        <a href="/FoodItem/Details/@item.FoodItemId">@item.FoodItemName</a> 
-        <a style="color:#ab2020;" href="/Recipe/UnAssociate/@Model.SelectedRecipe.RecipeId?FoodItemId=@item.FoodItemId">[x]</a><br />
-    }
-
-    <div>
-        <h4>Add new Food item to @Model.SelectedRecipe.RecipeName</h4>
-        <form method="POST" action="/Recipe/Associate/@Model.SelectedRecipe.RecipeId">
-            <select name="FoodItemId">
-                @foreach (var item in Model.AvailableFoodItems)
-                {
-                    <option value="@item.FoodItemId">@item.FoodItemName</option>
-                }
-
-            </select>
-            <input type="submit" value="Associate Food item" />
-        </form>
+<div class="detailsContainer">
+    <h2>@Model.SelectedRecipe.RecipeName</h2>
+    <h5>Recipe Description: @Model.SelectedRecipe.RecipeDescription</h5>
+    <div class="buttonsBox">
+        <a href="/Recipe/List" class="btn btn-success">&raquo; Go back</a>
+        <a href="/Recipe/Edit/@Model.SelectedRecipe.RecipeId" class="btn btn-warning">Update</a>
+        <a href="/Recipe/DeleteConfirm/@Model.SelectedRecipe.RecipeId" class="btn btn-danger">Delete</a>
     </div>
+    <div class="listContainer">
+        <h2 style="font-size: 15px;">List of food items present as ingredients to this recipe:</h2>
+        @foreach (var item in Model.ContainedFoodItems)
+        {
+            <div class="listItem">
+                <h4>@item.FoodItemName</h4>
+                <a href="/FoodItem/Details/@item.FoodItemId" class="btn btn-info">More Info &raquo;</a>
+                <a style="color:#ab2020;" href="/Recipe/UnAssociate/@Model.SelectedRecipe.RecipeId?FoodItemId=@item.FoodItemId">[x]</a>
+            </div>
+        }
+        <div style="margin-top: 20px;">
+            <form method="POST" action="/Recipe/Associate/@Model.SelectedRecipe.RecipeId">
+                <select class="form-select" name="FoodItemId">
+                    @foreach (var item in Model.AvailableFoodItems)
+                    {
+                        <option value="@item.FoodItemId">@item.FoodItemName</option>
+                    }
 
+                </select>
+                <input type="submit" class="btn btn-success" value="Add item to recipe" />
+            </form>
+        </div>
+    </div>
 </div>
+
